@@ -40,8 +40,8 @@ const slidesKenangan = [
   { src: '/images/foto1.jpg', width: 600, height: 800 },
   { src: '/images/foto2.jpg', width: 600, height: 800 },
   { src: '/images/foto4.jpg', width: 600, height: 800 },
-  { src: '/images/foto5.jpg', width: 600, height: 800 },
-  { src: '/images/foto6.jpg', width: 600, height: 800 },
+  { src: '/images/foto5.JPG', width: 600, height: 800 },
+  { src: '/images/foto6.JPG', width: 600, height: 800 },
   { src: '/images/foto7.jpg', width: 600, height: 800 },
 ];
 const slidesAib = [
@@ -60,7 +60,7 @@ const slidesAib = [
 const bgImages = {
   judul: "/images/judul.jpg",
   pesan: "/images/pesan.jpg",
-  galeri: "/images/galeri.jpg",
+  galeri: "/images/galeri.JPG",
   aib: "/images/aib.jpg", 
   penutup: "/images/penutup.jpg",
 };
