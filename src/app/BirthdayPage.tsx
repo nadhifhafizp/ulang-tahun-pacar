@@ -315,7 +315,7 @@ export default function HomePage() {
               <p className={`mt-8 text-3xl font-bold ${playfair.className}`}>- Dengan segenap cinta, pacarmu yang paling keren.</p>
               <a
                 // PENTING: Ganti dengan NOMOR WHATSAPP ANDA
-                href="https://wa.me/62812XXXXXXX?text=Makasih%20ya%20buat%20ucapannya%21%20Aku%20mau%20bilang%20..."
+                href="https://wa.me/62895361402448?text=Makasih%20ya%20buat%20ucapannya%21%20Aku%20mau%20bilang%20..."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-block px-8 py-3 bg-green-500 text-white font-bold rounded-full text-lg transition-transform hover:scale-105 active:scale-95 shadow-lg"
