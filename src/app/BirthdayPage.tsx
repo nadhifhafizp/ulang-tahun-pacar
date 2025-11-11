@@ -35,7 +35,7 @@ const lato = Lato({
   variable: '--font-lato',
 });
 
-// === DAFTAR FOTO GALERI 1 (KENANGAN) ===
+// === DAFTAR FOTO (Tetap sama) ===
 const slidesKenangan = [
   { src: '/images/foto1.jpg', width: 600, height: 800 },
   { src: '/images/foto2.jpg', width: 600, height: 800 },
@@ -44,8 +44,6 @@ const slidesKenangan = [
   { src: '/images/foto6.jpg', width: 600, height: 800 },
   { src: '/images/foto7.jpg', width: 600, height: 800 },
 ];
-
-// === DAFTAR FOTO GALERI 2 (AIB) ===
 const slidesAib = [
   { src: '/images/aib1.jpg', width: 800, height: 600 },
   { src: '/images/aib2.jpg', width: 600, height: 800 },
@@ -68,8 +66,7 @@ const bgImages = {
 };
 
 
-// GANTI NAMA FUNGSI INI
-export default function BirthdayPage() { // <--- SUDAH DIGANTI
+export default function HomePage() {
   const searchParams = useSearchParams();
   const partnerName = searchParams.get("to") || "Sayangku";
   
@@ -82,6 +79,7 @@ export default function BirthdayPage() { // <--- SUDAH DIGANTI
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const launchConfetti = () => {
+    // Kita masih perlu ukuran window agar konfeti memenuhi layar
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     setIsConfettiActive(true);
     setTimeout(() => {
@@ -113,6 +111,7 @@ export default function BirthdayPage() { // <--- SUDAH DIGANTI
       {isMusicPlaying && (
         <button
           onClick={toggleMusic}
+          // z-50 agar di atas segalanya
           className="fixed bottom-6 right-6 z-50 bg-black/50 text-white p-3 rounded-full transition-transform hover:scale-110 shadow-lg"
           aria-label="Toggle Music"
         >
@@ -128,33 +127,15 @@ export default function BirthdayPage() { // <--- SUDAH DIGANTI
         </button>
       )}
 
-      {/* Animasi BUNGA JATUH (z-30) */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-30">
-        <div className="flower flower-1" style={{ animationDelay: '0s', animationDuration: '8s' }} />
-        <div className="flower flower-2" style={{ animationDelay: '2s', animationDuration: '10s' }} />
-        <div className="flower flower-3" style={{ animationDelay: '4s', animationDuration: '9s' }} />
-        <div className="flower flower-4" style={{ animationDelay: '6s', animationDuration: '11s' }} />
-        <div className="flower flower-5" style={{ animationDelay: '1s', animationDuration: '7s' }} />
-      </div>
-
-      {/* Animasi KONFETI (z-50) */}
-      {isConfettiActive && (
-        <ReactConfetti
-          width={windowSize.width}
-          height={windowSize.height}
-          className="fixed top-0 left-0 w-full h-full z-50"
-          recycle={true}
-          numberOfPieces={500}
-        />
-      )}
-
       {/* GreetingCover (z-40) */}
       <GreetingCover partnerName={partnerName} onOpen={handleOpenMusic}>
         
-        {/* Konten <main> (z-auto, dengan isolation) */}
+        {/* Konten <main> */}
         <main
           className={`relative overflow-hidden text-center text-white bg-black ${lato.className} isolation-isolate`}
         >
+          {/* === PERBAIKAN: Animasi Bunga & Konfeti Full-Screen DIHAPUS dari sini === */}
+          
           {/* === BAGIAN JUDUL === */}
           <section 
             className="relative min-h-screen w-full flex flex-col justify-center items-center space-y-12 p-8 bg-cover bg-center"
@@ -182,7 +163,8 @@ export default function BirthdayPage() { // <--- SUDAH DIGANTI
 
           {/* === BAGIAN PESAN === */}
           <section 
-            className="relative min-h-screen w-full flex flex-col justify-center items-center p-8 bg-cover bg-center"
+            // Tambahkan overflow-hidden agar konfeti tidak "bocor" keluar section
+            className="relative min-h-screen w-full flex flex-col justify-center items-center p-8 bg-cover bg-center overflow-hidden"
             style={{ 
               backgroundImage: `
                 linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
@@ -190,8 +172,21 @@ export default function BirthdayPage() { // <--- SUDAH DIGANTI
               ` 
             }}
           >
+            {/* === PERBAIKAN: Konfeti dipindah ke sini === */}
+            {isConfettiActive && (
+              <ReactConfetti
+                width={windowSize.width}  // Tetap pakai windowSize agar penuh
+                height={windowSize.height} // Tetap pakai windowSize agar penuh
+                // 'absolute' akan menempel di section ini
+                className="absolute top-0 left-0 w-full h-full z-10" 
+                recycle={true}
+                numberOfPieces={500}
+              />
+            )}
+
             <div 
-              className="relative z-10 animate-fadeIn w-full max-w-2xl rounded-xl bg-black/30 p-8 shadow-2xl backdrop-blur-sm"
+              // Kartu ini dinaikkan ke z-20 agar di atas konfeti (z-10)
+              className="relative z-20 animate-fadeIn w-full max-w-2xl rounded-xl bg-black/30 p-8 shadow-2xl backdrop-blur-sm"
             >
               <h3 className={`text-3xl font-bold ${playfair.className}`}>Pesan Spesial Dariku</h3>
               <p className="mt-6 text-lg italic">
